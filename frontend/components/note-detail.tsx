@@ -111,7 +111,7 @@ export function NoteDetail({ noteId }: NoteDetailProps) {
   }
 
   const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
+    const date = new Date(dateString + "Z")
     return date.toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
