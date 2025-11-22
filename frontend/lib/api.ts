@@ -1,6 +1,6 @@
 import type { User, Note, LoginResponse } from "./types"
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:12345"
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://notesapp-e7ul.onrender.com"
 
 class ApiError extends Error {
   constructor(

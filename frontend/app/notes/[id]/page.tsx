@@ -1,18 +1,10 @@
 "use client"
 
-import { use } from "react"
-import { NoteDetail } from "@/components/note-detail"
-import { useAuth } from "@/lib/auth-context"
-import { AuthForm } from "@/components/auth-form"
+import { NoteDetailWrapper } from "@/components/note-detail-wrapper"
 
-export default function NotePage({ params }: { params: Promise<{ id: string }> }) {
-  const { isAuthenticated } = useAuth()
-  const resolvedParams = use(params)
+export default async function NotePage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = await params
   const noteId = Number.parseInt(resolvedParams.id)
 
-  if (!isAuthenticated) {
-    return <AuthForm />
-  }
-
-  return <NoteDetail noteId={noteId} />
+  return <NoteDetailWrapper noteId={noteId} />
 }

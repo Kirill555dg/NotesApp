@@ -37,7 +37,7 @@ export function NotesGrid({ onCreateNote }: NotesGridProps) {
       <>
         <NotesHeader onCreateNote={onCreateNote} />
         <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center">
-          <div className="size-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+          <div className="size-10 animate-spin rounded-full border-4 border-primary/20 border-t-primary shadow-lg" />
         </div>
       </>
     )
@@ -59,19 +59,19 @@ export function NotesGrid({ onCreateNote }: NotesGridProps) {
   return (
     <>
       <NotesHeader onCreateNote={onCreateNote} />
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8 min-h-[calc(100vh-4rem)] bg-gradient-to-br from-background via-primary/[0.02] to-accent/[0.02]">
         {notes.length === 0 ? (
           <div className="flex min-h-[calc(100vh-12rem)] flex-col items-center justify-center text-center">
-            <div className="rounded-full bg-muted p-6 mb-4">
-              <FileText className="size-12 text-muted-foreground" />
+            <div className="rounded-2xl bg-gradient-to-br from-muted to-muted/60 p-8 mb-4 shadow-lg">
+              <FileText className="size-16 text-muted-foreground" />
             </div>
-            <h2 className="text-2xl font-semibold mb-2">No notes yet</h2>
-            <p className="text-muted-foreground mb-6 max-w-sm">
+            <h2 className="text-2xl font-semibold mb-2 text-balance">No notes yet</h2>
+            <p className="text-muted-foreground mb-6 max-w-sm leading-relaxed">
               Get started by creating your first note. Click the "New Note" button to begin.
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {notes.map((note) => (
               <NoteCard key={note.id} note={note} onDelete={fetchNotes} />
             ))}

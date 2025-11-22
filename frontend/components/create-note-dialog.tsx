@@ -78,10 +78,12 @@ export function CreateNoteDialog({ open, onOpenChange }: CreateNoteDialogProps) 
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-[600px]">
+      <DialogContent className="sm:max-w-[600px] bg-card/95 backdrop-blur-sm border-border/50">
         <DialogHeader>
-          <DialogTitle>Create New Note</DialogTitle>
-          <DialogDescription>Add a new note to your collection. Fill in the details below.</DialogDescription>
+          <DialogTitle className="text-2xl">Create New Note</DialogTitle>
+          <DialogDescription className="text-muted-foreground">
+            Add a new note to your collection. Fill in the details below.
+          </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-4 py-4">
@@ -94,6 +96,7 @@ export function CreateNoteDialog({ open, onOpenChange }: CreateNoteDialogProps) 
               onChange={(e) => setTitle(e.target.value)}
               disabled={isCreating}
               autoFocus
+              className="border-border/50 focus:border-primary transition-colors duration-200"
             />
           </div>
 
@@ -106,7 +109,7 @@ export function CreateNoteDialog({ open, onOpenChange }: CreateNoteDialogProps) 
               onChange={(e) => setContent(e.target.value)}
               disabled={isCreating}
               rows={8}
-              className="font-mono text-sm"
+              className="font-mono text-sm border-border/50 focus:border-primary transition-colors duration-200"
             />
           </div>
 
@@ -118,25 +121,35 @@ export function CreateNoteDialog({ open, onOpenChange }: CreateNoteDialogProps) 
               value={tags}
               onChange={(e) => setTags(e.target.value)}
               disabled={isCreating}
+              className="border-border/50 focus:border-primary transition-colors duration-200"
             />
             <p className="text-xs text-muted-foreground">Example: work, personal, ideas</p>
           </div>
 
           {error && (
-            <Alert variant="destructive">
+            <Alert variant="destructive" className="border-destructive/20">
               <AlertDescription>{error}</AlertDescription>
             </Alert>
           )}
         </div>
 
         <DialogFooter>
-          <Button variant="outline" onClick={handleClose} disabled={isCreating}>
+          <Button
+            variant="outline"
+            onClick={handleClose}
+            disabled={isCreating}
+            className="bg-card/50 backdrop-blur-sm hover:bg-card transition-all duration-200"
+          >
             Cancel
           </Button>
-          <Button onClick={handleCreate} disabled={isCreating || !title.trim()}>
+          <Button
+            onClick={handleCreate}
+            disabled={isCreating || !title.trim()}
+            className="shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105"
+          >
             {isCreating ? (
               <div className="flex items-center gap-2">
-                <div className="size-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
+                <div className="size-4 animate-spin rounded-full border-2 border-primary-foreground/30 border-t-primary-foreground" />
                 Creating...
               </div>
             ) : (

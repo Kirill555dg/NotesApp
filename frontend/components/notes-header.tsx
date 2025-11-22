@@ -12,10 +12,10 @@ export function NotesHeader({ onCreateNote }: NotesHeaderProps) {
   const { user, logout } = useAuth()
 
   return (
-    <header className="sticky top-0 z-10 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-10 border-b border-border/40 bg-card/80 backdrop-blur-xl supports-[backdrop-filter]:bg-card/60 shadow-sm">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-3">
-          <div className="flex size-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+          <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent text-primary-foreground shadow-lg shadow-primary/20 transition-transform duration-300 hover:scale-105">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -33,17 +33,26 @@ export function NotesHeader({ onCreateNote }: NotesHeaderProps) {
             </svg>
           </div>
           <div>
-            <h1 className="text-lg font-semibold leading-none">Notes</h1>
+            <h1 className="text-lg font-semibold leading-none tracking-tight">Notes</h1>
             <p className="text-sm text-muted-foreground">{user?.username}</p>
           </div>
         </div>
 
         <div className="flex items-center gap-2">
-          <Button onClick={onCreateNote} size="sm" className="gap-2">
+          <Button
+            onClick={onCreateNote}
+            size="sm"
+            className="gap-2 shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:scale-105"
+          >
             <Plus className="size-4" />
             <span className="hidden sm:inline">New Note</span>
           </Button>
-          <Button onClick={logout} variant="ghost" size="sm" className="gap-2">
+          <Button
+            onClick={logout}
+            variant="ghost"
+            size="sm"
+            className="gap-2 transition-all duration-200 hover:scale-105"
+          >
             <LogOut className="size-4" />
             <span className="hidden sm:inline">Logout</span>
           </Button>

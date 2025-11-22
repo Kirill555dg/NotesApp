@@ -50,13 +50,16 @@ export function AuthForm() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-background via-primary/5 to-accent/10 p-4">
-      <Card className="w-full max-w-md shadow-lg">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-background via-primary/5 to-accent/10 p-4 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,oklch(0.55_0.18_215/0.1),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,oklch(0.55_0.15_195/0.08),transparent_50%)]" />
+
+      <Card className="w-full max-w-md shadow-2xl shadow-primary/10 border-border/50 backdrop-blur-sm bg-card/95 relative z-10">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold tracking-tight">
             {isLogin ? "Welcome back" : "Create an account"}
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-muted-foreground">
             {isLogin ? "Enter your credentials to access your notes" : "Sign up to start managing your notes"}
           </CardDescription>
         </CardHeader>
@@ -73,6 +76,7 @@ export function AuthForm() {
                 required
                 disabled={isLoading}
                 autoComplete="username"
+                className="border-border/50 focus:border-primary transition-colors duration-200"
               />
             </div>
             <div className="space-y-2">
@@ -87,19 +91,24 @@ export function AuthForm() {
                 disabled={isLoading}
                 autoComplete={isLogin ? "current-password" : "new-password"}
                 minLength={6}
+                className="border-border/50 focus:border-primary transition-colors duration-200"
               />
             </div>
 
             {error && (
-              <Alert variant="destructive">
+              <Alert variant="destructive" className="border-destructive/20">
                 <AlertDescription>{error}</AlertDescription>
               </Alert>
             )}
 
-            <Button type="submit" className="w-full" disabled={isLoading}>
+            <Button
+              type="submit"
+              className="w-full shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02]"
+              disabled={isLoading}
+            >
               {isLoading ? (
                 <div className="flex items-center gap-2">
-                  <div className="size-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
+                  <div className="size-4 animate-spin rounded-full border-2 border-primary-foreground/30 border-t-primary-foreground" />
                   <span>{isLogin ? "Signing in..." : "Creating account..."}</span>
                 </div>
               ) : (
@@ -115,7 +124,7 @@ export function AuthForm() {
                 setIsLogin(!isLogin)
                 setError("")
               }}
-              className="text-primary hover:underline"
+              className="text-primary hover:underline transition-all duration-200 hover:text-primary/80 font-medium"
               disabled={isLoading}
             >
               {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
